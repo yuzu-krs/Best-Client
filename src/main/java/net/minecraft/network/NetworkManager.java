@@ -48,6 +48,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.Marker;
 import org.apache.logging.log4j.MarkerManager;
+import store.scriptkitty.event.EventFlow;
+import store.scriptkitty.event.impl.packet.EventPacket;
 
 public class NetworkManager extends SimpleChannelInboundHandler<Packet>
 {
@@ -146,13 +148,18 @@ public class NetworkManager extends SimpleChannelInboundHandler<Packet>
         this.closeChannel(chatcomponenttranslation);
     }
 
-    protected void channelRead0(ChannelHandlerContext p_channelRead0_1_, Packet p_channelRead0_2_) throws Exception
+    protected void channelRead0(ChannelHandlerContext handlerContext, Packet packet) throws Exception
     {
         if (this.channel.isOpen())
         {
             try
             {
-                p_channelRead0_2_.processPacket(this.packetListener);
+                final EventPacket event=new EventPacket(packet);
+                event.setEventFlow(EventFlow.INBOUND);
+
+                if (event.isCancelled()) event.cancel();
+
+                packet.processPacket(this.packetListener);
             }
             catch (ThreadQuickExitException var4)
             {

@@ -3,6 +3,8 @@ package net.optifine.shaders.gui;
 import java.io.File;
 import java.io.IOException;
 import java.net.URI;
+
+import lombok.Getter;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
@@ -16,6 +18,7 @@ import net.optifine.shaders.Shaders;
 import net.optifine.shaders.ShadersTex;
 import net.optifine.shaders.config.EnumShaderOption;
 import org.lwjgl.Sys;
+
 
 public class GuiShaders extends GuiScreen
 {
@@ -361,6 +364,7 @@ public class GuiShaders extends GuiScreen
     /**
      * Called when the screen is unloaded. Used to disable keyboard repeat events
      */
+
     public void onGuiClosed()
     {
         super.onGuiClosed();

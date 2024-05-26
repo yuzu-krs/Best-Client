@@ -211,6 +211,8 @@ import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.storage.MapData;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import store.scriptkitty.event.EventFlow;
+import store.scriptkitty.event.impl.packet.EventPacket;
 
 public class NetHandlerPlayClient implements INetHandlerPlayClient
 {
@@ -811,9 +813,15 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient
         }
     }
 
-    public void addToSendQueue(Packet p_147297_1_)
+    public void addToSendQueue(Packet packet)
     {
-        this.netManager.sendPacket(p_147297_1_);
+
+        final EventPacket event=new EventPacket(packet);
+        event.setEventFlow(EventFlow.OUTBOUND);
+
+        if (event.isCancelled()) event.cancel();
+
+        this.netManager.sendPacket(packet);
     }
 
     public void handleCollectItem(S0DPacketCollectItem packetIn)

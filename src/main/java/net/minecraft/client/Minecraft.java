@@ -184,6 +184,8 @@ import org.lwjgl.opengl.GLContext;
 import org.lwjgl.opengl.OpenGLException;
 import org.lwjgl.opengl.PixelFormat;
 import org.lwjgl.util.glu.GLU;
+import store.scriptkitty.Best;
+import store.scriptkitty.event.impl.input.EventKey;
 
 public class Minecraft implements IThreadListener, IPlayerUsage
 {
@@ -587,6 +589,8 @@ public class Minecraft implements IThreadListener, IPlayerUsage
             this.gameSettings.enableVsync = false;
             this.gameSettings.saveOptions();
         }
+
+        Best.INSTANCE.init();
 
         this.renderGlobal.makeEntityOutlineShader();
     }
@@ -1030,6 +1034,8 @@ public class Minecraft implements IThreadListener, IPlayerUsage
         {
             this.stream.shutdownStream();
             logger.info("Stopping!");
+
+            Best.INSTANCE.shutdown();
 
             try
             {
@@ -1918,6 +1924,12 @@ public class Minecraft implements IThreadListener, IPlayerUsage
                     }
                     else
                     {
+
+                        //EDITED CLIENT EVENT
+                        Best.BUS.post(new EventKey(k));
+                        //EDITED CLIENT EVENT
+
+
                         if (k == 1)
                         {
                             this.displayInGameMenu();

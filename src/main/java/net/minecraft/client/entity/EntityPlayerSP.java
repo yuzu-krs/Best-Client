@@ -51,6 +51,8 @@ import net.minecraft.util.MovementInput;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.IInteractionObject;
 import net.minecraft.world.World;
+import store.scriptkitty.Best;
+import store.scriptkitty.event.impl.update.EventUpdate;
 
 public class EntityPlayerSP extends AbstractClientPlayer
 {
@@ -169,6 +171,12 @@ public class EntityPlayerSP extends AbstractClientPlayer
     {
         if (this.worldObj.isBlockLoaded(new BlockPos(this.posX, 0.0D, this.posZ)))
         {
+
+            //EDITED CLIENT EVENT
+            Best.BUS.post(new EventUpdate());
+            //EDITED CLIENT EVENT
+
+
             super.onUpdate();
 
             if (this.isRiding())
