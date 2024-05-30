@@ -8,7 +8,7 @@ import org.apache.commons.lang3.Validate;
 import store.scriptkitty.Best;
 
 @Getter
-public class Module implements Subscriber {
+public abstract class Module implements Subscriber {
     private boolean toggled;
 
     private final String name,description;

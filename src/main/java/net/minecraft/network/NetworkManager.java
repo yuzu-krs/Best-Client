@@ -157,7 +157,7 @@ public class NetworkManager extends SimpleChannelInboundHandler<Packet>
                 final EventPacket event=new EventPacket(packet);
                 event.setEventFlow(EventFlow.INBOUND);
 
-                if (event.isCancelled()) event.cancel();
+                if (event.isCancelled()) return;
 
                 packet.processPacket(this.packetListener);
             }

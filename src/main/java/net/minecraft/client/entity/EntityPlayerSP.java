@@ -52,6 +52,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.IInteractionObject;
 import net.minecraft.world.World;
 import store.scriptkitty.Best;
+import store.scriptkitty.command.CommandManager;
 import store.scriptkitty.event.impl.update.EventUpdate;
 
 public class EntityPlayerSP extends AbstractClientPlayer
@@ -305,6 +306,12 @@ public class EntityPlayerSP extends AbstractClientPlayer
      */
     public void sendChatMessage(String message)
     {
+        if(message.startsWith(CommandManager.COMMAND_PREFIX)&&Best.INSTANCE.getCm().handleCommand(message))
+            return ;
+
+
+
+
         this.sendQueue.addToSendQueue(new C01PacketChatMessage(message));
     }
 

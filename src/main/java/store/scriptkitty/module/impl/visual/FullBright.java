@@ -14,7 +14,7 @@ import store.scriptkitty.module.ModuleInfo;
         category = Category.Visual
 )
 
-public class FullBright extends Module {
+public final class FullBright extends Module {
 
     private float oldGame;
 

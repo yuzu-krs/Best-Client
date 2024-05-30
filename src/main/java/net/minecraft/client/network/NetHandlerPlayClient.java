@@ -819,7 +819,7 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient
         final EventPacket event=new EventPacket(packet);
         event.setEventFlow(EventFlow.OUTBOUND);
 
-        if (event.isCancelled()) event.cancel();
+        if (event.isCancelled()) return;
 
         this.netManager.sendPacket(packet);
     }

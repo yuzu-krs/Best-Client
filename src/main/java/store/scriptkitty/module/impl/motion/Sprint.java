@@ -14,7 +14,7 @@ import store.scriptkitty.module.ModuleInfo;
         category = Category.Motion
 )
 
-public class Sprint extends Module {
+public final class Sprint extends Module {
 
     public Sprint(){
         setKey(Keyboard.KEY_B);

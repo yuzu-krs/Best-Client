@@ -9,7 +9,7 @@ import store.scriptkitty.event.Event;
 @Getter
 @Setter
 @AllArgsConstructor
-public class EventPacket extends Event {
+public final class EventPacket extends Event {
     private Packet<?> packet;
 }
 
